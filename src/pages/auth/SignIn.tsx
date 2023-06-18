@@ -39,6 +39,7 @@ export default function SignIn() {
 
       if (response.status !== 200) {
         alert("로그인에 실패하였습니다.");
+        return;
       }
 
       const token = response.data.access_token;

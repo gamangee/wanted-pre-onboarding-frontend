@@ -49,6 +49,7 @@ export default function SignUp() {
 
       if (response.status !== 201) {
         alert("회원가입에 실패하였습니다.");
+        return;
       }
 
       alert("회원가입을 성공하였습니다.");

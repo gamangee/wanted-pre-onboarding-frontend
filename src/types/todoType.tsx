@@ -13,6 +13,10 @@ export interface TodoItemProps {
   todo: string;
 }
 
+export interface CreateTodoProp {
+  setTodos: React.Dispatch<React.SetStateAction<TodoProps[]>>;
+}
+
 export interface UpdateTodoProps {
   todo: string;
   isCompleted: boolean;
