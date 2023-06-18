@@ -1,3 +1,4 @@
+import { deleteTodoApi } from "../../../service/todoAPI";
 import { TodoItemProps } from "../../../types/todoType";
 
 export default function TodoItem({
@@ -6,6 +7,23 @@ export default function TodoItem({
   isCompleted,
   setTodos,
 }: TodoItemProps) {
+  const handleDelete = async () => {
+    try {
+      const response = await deleteTodoApi(id);
+
+      if (response.status !== 204) {
+        alert("삭제를 실패했습니다.");
+        return;
+      }
+
+      alert("할일이 삭제되었습니다!");
+      setTodos((todos) => todos.filter((todo) => todo.id !== id));
+    } catch (error: any) {
+      alert(`오류가 발생했습니다.\n다시 시도해주세요.`);
+      console.log(error.response.data.message);
+    }
+  };
+
   return (
     <li className="p-4 border-b last:border-none">
       {/* Assignment 5 */}
@@ -20,6 +38,8 @@ export default function TodoItem({
           </label>
         </div>
         <div>
+          {/* Assignment 8 */}
+          {/* 수정, 삭제 버튼 속성 부여 */}
           <button
             data-testid="modify-button"
             className="mr-2 bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-1 px-2 rounded"
@@ -27,6 +47,7 @@ export default function TodoItem({
             수정
           </button>
           <button
+            onClick={handleDelete}
             data-testid="delete-button"
             className="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded"
           >
