@@ -7,10 +7,14 @@ export interface TodoProps {
 
 export interface TodoListProps {
   todos: TodoProps[];
+  setTodos: React.Dispatch<React.SetStateAction<TodoProps[]>>;
 }
 
 export interface TodoItemProps {
+  id: number;
   todo: string;
+  isCompleted: boolean;
+  setTodos: React.Dispatch<React.SetStateAction<TodoProps[]>>;
 }
 
 export interface CreateTodoProp {

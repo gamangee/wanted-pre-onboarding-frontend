@@ -43,7 +43,7 @@ export default function Todo() {
       <div className="border-2 border-black rounded-lg p-5 w-5/6">
         <h1 className="text-2xl font-bold mb-4 text-center">Todo List</h1>
         <CreateTodo setTodos={setTodos} />
-        <TodoList todos={todos} />
+        <TodoList todos={todos} setTodos={setTodos} />
       </div>
     </div>
   );

@@ -1,13 +1,19 @@
 import { TodoListProps, TodoProps } from "../../../types/todoType";
 import TodoItem from "./TodoItem";
 
-export default function TodoList({ todos }: TodoListProps) {
+export default function TodoList({ todos, setTodos }: TodoListProps) {
   return (
     <div className="mt-4">
       <ul className="mt-5">
         {todos.length > 0 ? (
           todos.map((todo: TodoProps) => (
-            <TodoItem key={todo.id} todo={todo.todo} />
+            <TodoItem
+              key={todo.id}
+              id={todo.id}
+              todo={todo.todo}
+              isCompleted={todo.isCompleted}
+              setTodos={setTodos}
+            />
           ))
         ) : (
           <li className="text-center h-[200px] flex justify-center items-center">
