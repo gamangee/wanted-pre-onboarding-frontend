@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { getTodosApi } from "../../service/todoAPI";
 
 export default function Todo() {
-  const { isAuthenticated } = useContext(AuthContext);
+  const { logout, isAuthenticated } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -38,12 +38,25 @@ export default function Todo() {
     getTodos();
   }, []);
 
+  const onClickLogout = () => {
+    logout();
+    navigate("/signin");
+  };
+
   return (
     <div className="flex flex-col justify-center items-center h-screen text-center">
       <div className="border-2 border-black rounded-lg p-5 w-5/6">
         <h1 className="text-2xl font-bold mb-4 text-center">Todo List</h1>
         <CreateTodo setTodos={setTodos} />
         <TodoList todos={todos} setTodos={setTodos} />
+      </div>
+      <div className="flex justify-end">
+        <button
+          onClick={onClickLogout}
+          className="text-xs mt-3 bg-black hover:bg-gray-700 text-white font-bold py-1 px-2 rounded"
+        >
+          로그아웃
+        </button>
       </div>
     </div>
   );
