@@ -12,3 +12,8 @@ export interface TodoListProps {
 export interface TodoItemProps {
   todo: string;
 }
+
+export interface UpdateTodoProps {
+  todo: string;
+  isCompleted: boolean;
+}

@@ -1,9 +1,23 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { TodoProps } from "../../types/todoType";
 import TodoList from "./components/TodoList";
 import CreateTodo from "./components/CreateTodo";
+import { AuthContext } from "../../context/authContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Todo() {
+  const { isAuthenticated } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+
+  // Assignment 4
+  // 로컬스토리지에 토큰이 없는 상태에 투두리스트 페이지 접속 시 로그인 페이지로 리다이렉트
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate("/signin");
+    }
+  });
+
   const [todos, setTodos] = useState<TodoProps[]>([
     {
       id: 1,
