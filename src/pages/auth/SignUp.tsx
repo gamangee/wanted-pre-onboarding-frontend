@@ -1,9 +1,12 @@
-import { useEffect, useState } from "react";
-import { AuthData } from "../../types/authType";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
+import { AuthData } from "../../types/authType";
 import { signUpApi } from "../../service/authAPI";
 
 export default function SignUp() {
+  const { isAuthenticated } = useContext(AuthContext);
+
   const navigate = useNavigate();
 
   const [userInfo, setUserInfo] = useState<AuthData>({
@@ -12,6 +15,14 @@ export default function SignUp() {
   });
 
   const [isValid, setIsValid] = useState<boolean>(false);
+
+  // Assignment 4
+  // 로컬 스토리지에 토큰이 있으면 투두리스트 페이지로 리다이렉트
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/todo");
+    }
+  });
 
   const handleUserInfo = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event?.target;
@@ -43,7 +54,7 @@ export default function SignUp() {
       alert("회원가입을 성공하였습니다.");
 
       // Assignment 2
-      // 회원가입 정상 완료시 로그인 페이지로 이동
+      // 회원가입 정상 완료 시 로그인 페이지로 이동
       navigate("/signin");
     } catch (error: any) {
       alert(`오류가 발생했습니다.\n다시 시도해주세요.`);
