@@ -22,6 +22,7 @@ $ npm start
 
 ### 3. 프로젝트 구조
 
+```
 📦src
 ┣ 📂context
 ┃ ┣ 📜authContext.ts
@@ -48,6 +49,7 @@ $ npm start
 ┣ 📜App.tsx
 ┣ 📜index.css
 ┗ 📜index.tsx
+```
 
 ### 4. 데모 영상
 
